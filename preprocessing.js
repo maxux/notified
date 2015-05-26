@@ -1,3 +1,5 @@
+var net = require('net');
+
 var Preprocessing = function(settings) {
 	var self = this;
 	
@@ -15,12 +17,22 @@ var Preprocessing = function(settings) {
 		console.log(item);
 	}
 	
+	function forwarder(node, payload) {
+		var options = {
+			host: node,
+			port: 5050
+		};
+		
+		var client = net.connect(options, function() {
+			client.write(payload);
+		});
+	}
+	
 	function forward(item) {
 		console.log("[+] forwarding message to slaves");
 		
-		for(var i = 0; i < slaves.length; i++) {
-			// 
-		}
+		for(var i = 0; i < slaves.length; i++)
+			forwarder(slaves[i], JSON.stringify(item));
 	}
 	
 	this.process = function(item) {
