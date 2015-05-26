@@ -1,4 +1,5 @@
 {
+	"slaves": [],
 	"pushbullet": {
 		"key": "",
 		"device": ""

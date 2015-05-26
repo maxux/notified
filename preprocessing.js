@@ -3,9 +3,7 @@ var net = require('net');
 var Preprocessing = function(settings) {
 	var self = this;
 	
-	var slaves = [
-		'10.242.1.5'
-	];
+	var slaves = settings.slaves;
 	
 	var delegates = [
 		debugging,
