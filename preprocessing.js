@@ -8,6 +8,7 @@ var Preprocessing = function(settings) {
 	var delegates = [
 		debugging,
 		forward,
+		acpi,
 	];
 
 	function debugging(item) {
@@ -21,8 +22,11 @@ var Preprocessing = function(settings) {
 			port: 5050
 		};
 		
-		var client = net.connect(options, function() {
+		var client = net.createConnection(options, function() {
 			client.write(payload);
+			
+		}).on('error', function() {
+			console.log("[-] cannot connect: " + node);
 		});
 	}
 	
@@ -31,6 +35,26 @@ var Preprocessing = function(settings) {
 		
 		for(var i = 0; i < slaves.length; i++)
 			forwarder(slaves[i], JSON.stringify(item));
+	}
+	
+	function acpi(item) {
+		if(item.source != 'acpi')
+			return;
+		
+		item.title = 'ACPI';
+		
+		var translate = {
+			"button/mute MUTE 00000080 00000000 K": "Button: mute",
+			"button/volumeup VOLUP 00000080 00000000 K": "Button: volume up",
+			"button/volumedown VOLDN 00000080 00000000 K": "Button: volume down",
+			"button/lid LID open": "Monitor: opened",
+			"button/lid LID close": "Monitor: closed",
+			"jack/headphone HEADPHONE unplug": "Sound: jack unplugged",
+			"jack/headphone HEADPHONE plug": "Sound: jack plugged"
+		}
+		
+		if(translate[item.message])
+			item.message = translate[item.message];
 	}
 	
 	this.process = function(item) {

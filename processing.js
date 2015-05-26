@@ -34,8 +34,9 @@ var Processing = function(settings) {
 	
 	function daemon(item) {
 		notifier.notify({
-			title: item.source,
+			title: (item.title) ? item.title : item.source,
 			message: item.message,
+			urgency: item.level
 		});
 	}
 	
