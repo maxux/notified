@@ -4,12 +4,14 @@ var Preprocessing = require('./preprocessing.js');
 var Processing = require('./processing.js');
 var Postprocessing = require('./postprocessing.js');
 
+var settings = require('./settings.json');
+
 //
 // initializing workers
 //
-var preprocessing = new Preprocessing();
-var processing = new Processing();
-var postprocessing = new Postprocessing();
+var preprocessing = new Preprocessing(settings);
+var processing = new Processing(settings);
+var postprocessing = new Postprocessing(settings);
 
 function notification(item) {
 	//

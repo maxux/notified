@@ -1,4 +1,4 @@
-var Preprocessing = function() {
+var Preprocessing = function(settings) {
 	var self = this;
 	
 	var slaves = [

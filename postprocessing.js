@@ -1,4 +1,4 @@
-var Postprocessing = function() {
+var Postprocessing = function(settings) {
 	var self = this;
 	
 	var delegates = [
