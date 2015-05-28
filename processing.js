@@ -62,7 +62,7 @@ var Processing = function(settings) {
 			json: true,
 			body: {
 				type: "note",
-				title: item.title,
+				title: item.title + ': ' + item.message,
 				body: item.message,
 				device_iden: settings.pushbullet.device
 			},
