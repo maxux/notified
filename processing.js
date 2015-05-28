@@ -33,6 +33,10 @@ var Processing = function(settings) {
 	}
 	
 	function daemon(item) {
+		// removing '-' from default source
+		if(item.source[0] == '-')
+			item.source = item.source.substr(1);
+		
 		notifier.notify({
 			title: (item.title) ? item.title : item.source,
 			message: item.message,
