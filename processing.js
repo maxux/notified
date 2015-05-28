@@ -45,9 +45,14 @@ var Processing = function(settings) {
 	}
 	
 	function mobile(item) {
+		// not a mobile request
 		if(!item.tag || item.tag != "mobile")
 			return;
 		
+		// no key set
+		if(settings.pushbullet.key == "")
+			return;
+				
 		console.log("[+] sending push notification");
 		
 		var options = {
