@@ -50,7 +50,8 @@ var Preprocessing = function(settings) {
 			"button/lid LID open": "Monitor: opened",
 			"button/lid LID close": "Monitor: closed",
 			"jack/headphone HEADPHONE unplug": "Sound: jack unplugged",
-			"jack/headphone HEADPHONE plug": "Sound: jack plugged"
+			"jack/headphone HEADPHONE plug": "Sound: jack plugged",
+			"battery PNP0C0A:00 00000080 00000001": "Battery: status change"
 		}
 		
 		if(translate[item.message])
