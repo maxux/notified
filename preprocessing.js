@@ -38,11 +38,11 @@ var Preprocessing = function(settings) {
 	}
 	
 	function acpi(item) {
-		if(item.source != 'acpi')
+		if(item.source.lastIndexOf("ACPI", 0) == -1)
 			return;
-		
-		item.title = 'ACPI';
-		
+					
+		item.title = item.source;
+
 		var translate = {
 			"button/mute MUTE 00000080 00000000 K": "Button: mute",
 			"button/volumeup VOLUP 00000080 00000000 K": "Button: volume up",
